@@ -41,10 +41,10 @@ var game = {
 
   //initialize user's character object to chosen jedi
   initCharacter: function(selection){
-    character.name = selection.name;
-    character.health = selection.health;
-    character.baseAttack = selection.baseAttack;
-    character.attack = selection.attack;
+    this.character.name = selection.name;
+    this.character.health = selection.health;
+    this.character.baseAttack = selection.baseAttack;
+    this.character.attack = selection.attack;
   },
   //move remaining characters to enemy selection row
   moveToEnemies: function() {
@@ -53,24 +53,22 @@ var game = {
   },
   //initialize user's enemy object to chosen defender
   initDefender: function(selection) {
-    defender.name = selection.name;
-    defender.health = selection.health;
-    defender.baseAttack = selection.baseAttack;
-    defender.attack = selection.attack;
+    this.defender.name = selection.name;
+    this.defender.health = selection.health;
+    this.defender.baseAttack = selection.baseAttack;
+    this.defender.attack = selection.attack;
   },
   //reset game
   reset: function() {
-    $("#obiWan").children("#obiWan-health").html(obiWanKenobi.health);
-    $("#lukeSkywalker").children("#lukeSkywalker-health").html(lukeSkywalker.health);
-    $("#darthSidious").children("#darthSidious-health").html(darthSidious.health);
-    $("#darthMaul").children("#darthMaul-health").html(darthMaul.health);
+    $("#obiWan").children(".health").html(this.obiWanKenobi.health);
+    $("#lukeSkywalker").children(".health").html(this.lukeSkywalker.health);
+    $("#darthSidious").children(".health").html(this.darthSidious.health);
+    $("#darthMaul").children(".health").html(this.darthMaul.health);
 
     $(".character").removeClass("chosen-character enemy-available chosen-defender").addClass("character-available");
-    var available = $(".character-available").show();
-    $("#character-selection").html(available);
+    $("#character-selection").html($(".character-available").show());
 
     $("#stats").empty();
-    $("#restart").hide();
 
     this.characterSelected = false;
     this.defenderSelected = false;
@@ -82,9 +80,6 @@ var game = {
 }
 
 $(document).ready(function() {
-
-  //hide restart button when page loads
-  $("#restart").hide();
 
   // when player clicks one of the available characters
   $(".character").on("click", function () {
@@ -113,6 +108,7 @@ $(document).ready(function() {
 
       //initialize chosen character
       game.initCharacter(selection);
+      console.log(game.character);
       game.characterSelected = true;
 
       //display the chosen character
@@ -126,6 +122,7 @@ $(document).ready(function() {
 
         //initialize enemy character
         game.initDefender(selection);
+        console.log(game.defender);
         game.defenderSelected = true;
 
         //display the chosen defender
@@ -150,7 +147,7 @@ $(document).ready(function() {
       //counterattack
       if (game.defender.health > 0) {
         game.character.health -= game.defender.baseAttack;
-        $(".chosen-character").children(".health").html(character.health);
+        $(".chosen-character").children(".health").html(game.character.health);
 
         if (game.character.health > 0) {
           $("#stats").append(game.defender.name + " attacked you back for " + game.defender.baseAttack + " damage.");
@@ -170,7 +167,6 @@ $(document).ready(function() {
         if (game.wins === 3) {
           game.gameOver = true;
           $("#stats").html("You won! GAME OVER!!!<br>Play again?");
-          $("#restart").show();
         }
       }
     } else if (!game.characterSelected && !game.gameOver) {
