@@ -17,7 +17,7 @@ h1 {
     color: white;
 }
 
-.character-available , .character, .enemy{
+.character{
 	display: inline-block;
   	height: 150px;
   	width:150px;
@@ -27,12 +27,17 @@ h1 {
 	border-color: green;
 }
 
-.character-available p {
+.character p {
+	width: 100%;
 	text-align: center;
-	margin: 0px 2px 0px 2px;
+	margin: 0;
 }
 
-.character {
+.enemy-available, .chosen-defender{
+	border-color: red;
+}
+
+.chosen-character {
 	border-color: blue;
 }
 
@@ -46,8 +51,8 @@ img {
 	width: 100%;
 }
 
-.enemy{
-	border-color: red;
+p .name{
+	text-align: center;
 }
 
 #defender{
@@ -57,5 +62,5 @@ img {
 #stats {
 	font-size: 16px;
 	font-weight: bold;
-    color: 	green;
+    color: 	lightgreen;
 }
