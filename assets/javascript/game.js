@@ -66,7 +66,12 @@ var game = {
     $("#darthMaul").children(".health").html(this.darthMaul.health);
 
     $(".character").removeClass("chosen-character enemy-available chosen-defender").addClass("character-available");
-    $("#character-selection").html($(".character-available").show());
+    $("#character-selection").append($("#obiWan"));
+    $("#character-selection").append($("#lukeSkywalker"));
+    $("#character-selection").append($("#darthSidious"));
+    $("#character-selection").append($("#darthMaul"));
+
+    $(".character-available").show();
 
     $("#stats").empty();
 
@@ -79,10 +84,10 @@ var game = {
   }
 }
 
-$(document).ready(function() {
+$(document).ready(function(){
 
   // when player clicks one of the available characters
-  $(".character").on("click", function () {
+  $(".character").on("click", function (){
     var selection;
 
     //get character object that refers to character pressed
@@ -104,7 +109,7 @@ $(document).ready(function() {
         break;
     }
     // only allow if character has not been selected yet
-    if(game.characterSelected == false) {
+    if(game.characterSelected == false){
 
       //initialize chosen character
       game.initCharacter(selection);
@@ -118,7 +123,7 @@ $(document).ready(function() {
       game.moveToEnemies();
     } else if ((game.characterSelected == true) && (game.defenderSelected == false)) {
       //pick enemy
-      if($(this).hasClass("enemy-available")) {
+      if($(this).hasClass("enemy-available")){
 
         //initialize enemy character
         game.initDefender(selection);
@@ -135,7 +140,7 @@ $(document).ready(function() {
   $("#attack").on("click", function() {
     console.log("attack");
     //character and defender chosen, attacking is ok
-    if (game.characterSelected && game.defenderSelected && !game.gameOver) {
+    if(game.characterSelected && game.defenderSelected && !game.gameOver){
       //attacks defender and reduce health
       game.defender.health = game.defender.health - game.character.attack;
       $(".chosen-defender").children(".health").html(game.defender.health);
@@ -145,13 +150,13 @@ $(document).ready(function() {
       game.character.attack += game.character.baseAttack;
 
       //counterattack
-      if (game.defender.health > 0) {
+      if(game.defender.health > 0){
         game.character.health -= game.defender.baseAttack;
         $(".chosen-character").children(".health").html(game.character.health);
 
-        if (game.character.health > 0) {
+        if (game.character.health > 0){
           $("#stats").append(game.defender.name + " attacked you back for " + game.defender.baseAttack + " damage.");
-        } else {
+        }else{
           game.gameOver = true;
           $("#stats").html("You have been defeated...GAME OVER!!!<br>Play again?");
           $("#restart").show();
@@ -164,15 +169,15 @@ $(document).ready(function() {
         $(".chosen-defender").hide();
 
         //all defenders lost?
-        if (game.wins === 3) {
+        if (game.wins === 3){
           game.gameOver = true;
           $("#stats").html("You won! GAME OVER!!!<br>Play again?");
         }
       }
-    } else if (!game.characterSelected && !game.gameOver) {
-      $("#stats").html("<p>You must first select your game character.</p>");
-    } else if (!game.defenderSelected && !game.gameOver) {
-      $("#stats").html("<p>You must choose an enemy to fight.</p>");
+    }else if(!game.characterSelected && !game.gameOver){
+      $("#stats").html("Select your game character.");
+    }else if(!game.defenderSelected && !game.gameOver){
+      $("#stats").html("Choose an enemy to fight.");
     }
   });
 
