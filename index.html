@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<title>Star Wars RPG</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
+
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-center" id="title"><strong>Star Wars RPG!</strong></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="character-selection">
+				<!-- character (selection) row -->
+				<span class="character-available" id="obiWan">
+					<p>Obi-Wan Kenobi</p> 
+					<img class="img-fluid" id="obiWan-img" src="assets/images/obi-wan-kenobi.jpg">
+					<p id="obiWan-health">120</p>
+				</span>
+				<span class="character-available" id="lukeSkywalker">		<p>Luke Skywalker</p> 
+					<img class="img-fluid" id="lukeSkywalker-img" src="assets/images/luke-skywalker.jpg">
+					<p id="lukeSkywalker-health">100</p>
+				</span>
+				<span class="character-available" id="darthSidious">
+					<p>Darth Sidious</p>
+					<img class="img-fluid" id="darthSidious-img" src="assets/images/darth-sidious.jpg">
+					<p id="darthSidious-health">150</p>
+				</span>
+				<span class="character-available" id="darthMaul">
+					<p>Darth Maul</p>
+					<img class="img-fluid" id="darthMaul-img" src="assets/images/darth-maul.jpg">
+					<p id="darthMaul-health">180</p>
+				</span>
+			</div>
+			<br>
+			<h2>Your Character</h2>
+			<div class="col-md-12" id="character">
+				<span class="character">
+					<p id="character-name"></p>
+					<img class="img-fluid" id="character-img" src="">
+					<p id="character-health"></p>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="enemy-selection">
+				<!-- enemy selection row -->
+				<h2>Enemies Available To Attack</h2>
+				<span class="enemy-available" id="enemy-selection-1"></span>
+				<span class="enemy-available" id="enemy-selection-2"></span>
+				<span class="enemy-available" id="enemy-selection-3"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="fight-section">
+				<h2>Fight Section</h2>
+				<br>
+				<button id="attack">Attack</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" id="defender">
+				<!-- enemy/stats row -->
+				<h2>Defender</h2>
+				<span class="enemy">
+					<p id="enemy-name"></p>
+					<img class="img-fluid" id="character-img" src="">
+					<p id="enemy-health"></p>
+				</span>
+				<p id="stats"></p>
+				<br>
+				<button id="restart">Restart</button>
+      		</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>
